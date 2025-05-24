@@ -26,8 +26,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const MongoStore = require("connect-mongo");
 
-const port = 3000;
-// const MONGO_URL='mongodb://127.0.0.1:27017/wanderlust';
+const port = process.env.PORT || 3000;
 const dbUrl = process.env.ATLAS_DB;
 
 
