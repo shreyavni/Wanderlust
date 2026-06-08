@@ -5,6 +5,7 @@ if(process.env.NODE_ENV!="production"){
 const express = require('express');
 const path=require('path');
 const app = express();
+const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Listing = require('./models/listing.js');
@@ -26,7 +27,6 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const MongoStore = require("connect-mongo");
 
-const port = 3000;
 // const MONGO_URL='mongodb://127.0.0.1:27017/wanderlust';
 const dbUrl = process.env.ATLAS_DB;
 
@@ -81,9 +81,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
+app.get('/', (req, res) => {
+    res.redirect("/listings");
+});
 
 app.use((req,res,next)=>{
     res.locals.currUser = req.user;
@@ -118,5 +118,5 @@ app.use((err,req, res,next) => {
 
 
 app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}/listings`);
+    console.log(`Example app listening on port http://localhost:${port}`);
 });
