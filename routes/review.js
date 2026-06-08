@@ -1,8 +1,10 @@
 const express = require("express");
+const multer = require('multer');
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require('../utils/wrapAsync.js');
 const { validateReview, isLoggedIn, isAuthor } = require('../middlewares.js');
 const reviewController = require("../controllers/reviews.js")
+const { uploadToCloudinary } = require('../cloudConfig.js');
 const upload = multer({ storage: multer.memoryStorage() });
 
 //Review Post route
