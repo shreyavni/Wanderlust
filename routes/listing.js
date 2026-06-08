@@ -9,7 +9,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.route("/")
         .get(wrapAsync(listingController.index))
-        .post(isLoggedIn, validateListing, upload.single("listing[image][url]"),
+        .post(isLoggedIn, validateListing, upload.single("listing[image]"),
                 uploadToCloudinary, wrapAsync(listingController.create));
 
 
@@ -20,7 +20,7 @@ router.get("/new", isLoggedIn, listingController.new);
 
 router.route("/:id")
         .get(wrapAsync(listingController.show))
-        .put(isLoggedIn, isOwner, upload.single("listing[image][url]"), validateListing,
+        .put(isLoggedIn, isOwner, upload.single("listing[image]"), validateListing,
                 uploadToCloudinary, wrapAsync(listingController.update))
         .delete(isLoggedIn, isOwner, wrapAsync(listingController.delete))
 
