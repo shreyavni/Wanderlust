@@ -5,7 +5,7 @@ const { isLoggedIn, isOwner, validateListing } = require('../middlewares.js');
 const listingController = require('../controllers/listings.js');
 const multer = require('multer');
 const { uploadToCloudinary } = require('../cloudConfig.js');
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.route("/")
         .get(wrapAsync(listingController.index))
