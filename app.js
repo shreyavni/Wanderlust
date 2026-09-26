@@ -38,6 +38,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsmate);
 
+const clientPromise = mongoose.connect(dbUrl, { family: 4 }).then(m => m.connection.getClient());
+
+async function main() {
+    await clientPromise;
+}
+
 main()
 .then(()=>{
     console.log('db connected');
@@ -45,12 +51,8 @@ main()
     console.log(err);
 })
 
-async function main() {
-    await mongoose.connect(dbUrl);
-}
-
 const store=MongoStore.create({
-    mongoUrl:dbUrl,
+    clientPromise: clientPromise,
     crypto:{
         secret: process.env.SECRET,
     },
