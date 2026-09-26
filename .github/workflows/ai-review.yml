@@ -16,7 +16,7 @@ jobs:
       
       # Step 2: Use YOUR newly created custom action!
       - name: Run Gemini PR Reviewer
-        uses: shreyavni/PR-Review-Agent@main # <-- This points to YOUR repo!
+        uses: shreyavni/CodEra@main 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
