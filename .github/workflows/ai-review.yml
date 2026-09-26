@@ -7,15 +7,20 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
+    
+    # These permissions are required for the bot to post a comment
     permissions:
       pull-requests: write
       contents: read
+      issues: write # Added this just to be safe, as PR comments use the Issues API!
+
     steps:
-      # Step 1: Checkout the code from Wanderlust
-      - uses: actions/checkout@v4
+      # Step 1: Checkout the Wanderlust code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       
-      # Step 2: Use YOUR newly created custom action!
-      - name: Run Gemini PR Reviewer
+      # Step 2: Run your custom action from the CodEra repository
+      - name: Run Gemini PR Review Agent
         uses: shreyavni/CodEra@main 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
