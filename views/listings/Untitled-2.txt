@@ -1,3 +1,0 @@
-# 
-
-{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"cluster0.dztrzng.mongodb.net.","type":16}],"Answer":[{"name":"cluster0.dztrzng.mongodb.net.","type":16,"TTL":60,"data":"authSource=admin\u0026replicaSet=atlas-uc9j6v-shard-0"}]}
